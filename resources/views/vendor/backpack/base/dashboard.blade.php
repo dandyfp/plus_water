@@ -11,5 +11,5 @@
 @endphp
 
 @section('content')
-  <p>Your custom HTML can live here</p>
+  <p>Management Distributed Liquid</p>
 @endsection

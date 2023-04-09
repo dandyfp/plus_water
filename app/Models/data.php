@@ -21,12 +21,14 @@ class data extends Model
 
     protected $primaryKey = 'id';
 
+    protected $guarded = ['id'];
+
     protected static function boot()
     {
         parent::boot();
 
-        static::creating(function ($model) {
-            $model->id = uniqid('RF-');
-        });
+        /*static::creating(function ($model) {
+            $model->id = uniqid();
+        });*/
     }
 }
