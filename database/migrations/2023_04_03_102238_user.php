@@ -21,6 +21,10 @@ return new class extends Migration
         $table->string('telpon');
         $table->timestamps();
     });
+
+    Schema::table('id', function (Blueprint $table) {
+        $table->string('id')->change();
+    });
     }
 
     /**
@@ -32,6 +36,6 @@ return new class extends Migration
     {
         //
     }
-    
+
 
 };
