@@ -5,3 +5,5 @@
 
 
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('rf-id-crud-controller') }}"><i class="nav-icon la la-group"></i> User RfId</a></li>
+
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('user-rf-id-login') }}"><i class="nav-icon la la-icons"></i> User rf id logins</a></li>
