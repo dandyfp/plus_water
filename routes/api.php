@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('auth-rf','App\Http\Controllers\AuthController@authenticateRF');
 
 Route::get('users', 'App\Http\Controllers\UserController@index');
+
+Route::post('register','App\Http\Controllers\AuthController@register');

@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\RfIdCrudControllerRequest;
+use App\Http\Requests\UserRfIdLoginRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
-use PhpParser\Node\Stmt\Label;
 
 /**
- * Class RfIdCrudControllerCrudController
+ * Class UserRfIdLoginCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class RfIdCrudController extends CrudController
+class UserRfIdLoginCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -27,9 +26,9 @@ class RfIdCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\data::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/rf-id-crud-controller');
-        CRUD::setEntityNameStrings('User Rfid', 'User Rfid');
+        CRUD::setModel(\App\Models\LoggedInRfid::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/user-rf-id-login');
+        CRUD::setEntityNameStrings('data user rfid login', 'data user rfid logins');
     }
 
     /**
@@ -40,10 +39,14 @@ class RfIdCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+
+        CRUD::setValidation(UserRfIdLoginRequest::class);
+
         CRUD::column('nama');
         CRUD::column('rf_id')->label('Uniq Id');
         CRUD::column('jenis_kelamin');
         CRUD::column('telpon');
+        CRUD::column('waktu_login')->label('Waktu login');
 
 
         /**
@@ -61,14 +64,12 @@ class RfIdCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(RfIdCrudControllerRequest::class);
+        CRUD::setValidation(UserRfIdLoginRequest::class);
 
-        CRUD::field('nama');
-        CRUD::field('telpon');
-        CRUD::field('rf_id')->label('Uniq Id');
-        CRUD::field('jenis_kelamin');
-
-
+        CRUD::column('nama');
+        CRUD::column('rf_id')->label('Uniq Id');
+        CRUD::column('jenis_kelamin');
+        CRUD::column('telpon');
 
 
 
@@ -89,5 +90,7 @@ class RfIdCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+
+
     }
 }
